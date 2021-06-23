@@ -1,0 +1,9 @@
+// 导入变量相关的partial
+@import 'variables.scss';
+
+// 导入layout相关
+@import 'reboot.scss';
+
+@import './mixin';
+
+@import '../components/Button/style';
