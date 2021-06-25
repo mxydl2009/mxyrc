@@ -41,6 +41,11 @@
       &.is-active, &:hover {
         color: $menu-item-active-color;
       }
+      &.is-disabled {
+        color: $menu-item-disabled-color;
+        pointer-events: none;
+        cursor: default;
+      }
     }
   }
   // 当按钮展开时本身的样式
