@@ -17,6 +17,7 @@
     cursor: not-allowed;
     opacity: $btn-disabled-opacity;
     box-shadow: none;
+    pointer-events: none;
     > * {
       // 让所有子元素不接收鼠标事件
       pointer-events: none;
