@@ -4,39 +4,44 @@ import { MenuItemProps } from './MenuItem'
 
 // 字符串字面量联合类型，等同于使用枚举
 type MenuMode = 'horizontal' | 'vertical'
-type SelectedCallback = (selectedIndex: number) => void
+type SelectedCallback = (selectedIndex: string) => void
 
 // 定义父组件向子组件传递的数据接口
 interface IMenuContext {
-  activeIndex: number;
+  activeIndex: string;
   // 用于在选取菜单子项后用户自定义的逻辑
   onSeleted?: SelectedCallback;
+  mode: MenuMode;
+  defaultOpenedSubMenus?: string[];
 }
 
 export interface MenuProps {
-  defaultIndex?: number;
+  defaultIndex?: string;
   className?: string;
   mode?: MenuMode;
   style?: React.CSSProperties;
   onSelected?: SelectedCallback;
+  defaultOpenedSubMenus?: string[];
 }
 
-export const MenuContext = createContext<IMenuContext>({ activeIndex: 0 })
+export const MenuContext = createContext<IMenuContext>({ activeIndex: '0', mode: 'horizontal' })
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { className, mode, style, defaultIndex, children, onSelected } = props;
+  const { className, mode, style, defaultIndex, children, onSelected, defaultOpenedSubMenus } = props;
   const [ currentActive, setActive ] = useState(defaultIndex)
   const classes = classNames('menu', className, {
     'menu-vertical': mode === 'vertical',
     'menu-horizontal': mode !== 'vertical'
   })
-  const handleClick = (selectedIndex: number) => {
+  const handleClick = (selectedIndex: string) => {
     setActive(selectedIndex)
     onSelected && onSelected(selectedIndex)
   }
   const passedContext: IMenuContext = {
-    activeIndex: currentActive? currentActive: 0,
-    onSeleted: handleClick
+    activeIndex: currentActive? currentActive: '0',
+    onSeleted: handleClick,
+    mode: mode === 'vertical'? 'vertical': 'horizontal',
+    defaultOpenedSubMenus
   }
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
@@ -55,7 +60,7 @@ const Menu: React.FC<MenuProps> = (props) => {
     const childElement = child as React.FunctionComponentElement<MenuItemProps>
       const { displayName } = childElement.type
       if (displayName === 'MenuItem' || displayName === 'SubMenu') {
-        return React.cloneElement(childElement, { index })
+        return React.cloneElement(childElement, { index: index.toString() })
       } else {
         console.error('Warning: Menu has a child which is not a MenuItem Component')
       }
@@ -75,8 +80,9 @@ const Menu: React.FC<MenuProps> = (props) => {
 }
 
 Menu.defaultProps = {
-  defaultIndex: 0,
-  mode: 'horizontal'
+  defaultIndex: '0',
+  mode: 'horizontal',
+  defaultOpenedSubMenus: []
 }
 
 Menu.displayName = 'Menu'
