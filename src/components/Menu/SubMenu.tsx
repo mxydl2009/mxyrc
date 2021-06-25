@@ -2,6 +2,8 @@ import React, { useContext, useState, FunctionComponentElement } from 'react'
 import classNames from 'classnames'
 import { MenuContext } from './Menu'
 import { MenuItemProps } from './MenuItem'
+import Icon from '../Icon/Icon'
+import { CSSTransition } from 'react-transition-group'
 
 export interface SubMenuProps {
   index?: string;
@@ -15,7 +17,9 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
   const isOpen = (index && context.mode === 'vertical')? openedMenus.includes(index): false
   const [ opened, setOpen ] = useState(isOpen)
   const classes = classNames('menu-item submenu-item', className, {
-    'is-active': index ? context.activeIndex.startsWith(index): false
+    'is-active': index ? context.activeIndex.startsWith(index): false,
+    'is-opened': opened,
+    'is-vertical': context.mode === 'vertical'
   })
   const subMenuClasses = classNames('submenu', {
     'menu-opened': opened
@@ -29,7 +33,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
     timer = setTimeout(() => {
       e.preventDefault()
       setOpen(toggle)
-    }, 500)    
+    }, 100)    
   }
   const handleVertical = context.mode === 'vertical' ? {
     onClick: (e: React.MouseEvent) => {
@@ -56,9 +60,17 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
       }
     })
     return (
-      <ul className={subMenuClasses}>
-        { childrenComponent }
-      </ul>
+      <CSSTransition
+        in={opened} 
+        timeout={300} 
+        classNames={'zoom-in-top'}
+        appear
+        unmountOnExit
+      >
+        <ul className={subMenuClasses}>
+          { childrenComponent }
+        </ul>
+      </CSSTransition>
     )
   }
   return (
@@ -69,6 +81,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
     >
       <div className={'submenu-title'} { ...handleVertical }>
         {title}
+        <Icon theme={'primary'} icon={'angle-down'} className={'arrow-icon'} />
       </div>
       { renderChildren() }
     </li>

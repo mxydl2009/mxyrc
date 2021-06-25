@@ -35,6 +35,19 @@ $danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 
+// 创建主体颜色Map映射结构
+$theme-colors:
+(
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark
+);
+
 // 字体系统
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 // 等宽字体，用于代码之类的展示
