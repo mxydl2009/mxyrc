@@ -7,3 +7,6 @@ export const parameters = {
     },
   },
 }
+
+// 添加样式文件
+import '../src/styles/index.scss'
