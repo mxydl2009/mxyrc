@@ -31,3 +31,32 @@
     border-color: $border;
   }
 }
+
+// 预设的动画效果，direction表示动画方向、scaleStart表示开始时的scale，scaleEnd表示结束时的scale，origin表示transform的原点
+@mixin zoom-animation(
+  $direction: 'top',
+  $scaleStart: scaleY(0),
+  $scaleEnd: scaleY(1),
+  $origin: center top
+) {
+  .zoom-in-#{$direction}-enter {
+    opacity: 0;
+    transform: $scaleStart;
+  }
+  .zoom-in-#{$direction}-enter-active {
+    opacity: 1;
+    transform: $scaleEnd;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.320, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.320, 1) 100ms;
+    transform-origin: $origin;
+  }
+  .zoom-in-#{$direction}-exit {
+    opacity: 1;
+    transform: $scaleEnd;
+  }
+  .zoom-in-#{$direction}-exit-active {
+    opacity: 0;
+    transform: $scaleStart;
+    transition: transform 300ms cubic-bezier(0.23, 1, 0.320, 1) 100ms, opacity 300ms cubic-bezier(0.23, 1, 0.320, 1) 100ms;
+    transform-origin: $origin;
+  }
+}
