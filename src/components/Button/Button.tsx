@@ -50,12 +50,11 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 /**
  * ## Button组件的说明
+ * 
  * ### 引入说明
  * ~~~js
  * // ESModule方式
  * import { Button } from 'mxyrc'
- * // CommonJS
- * const { Button } = require('mxyrc')
  * ~~~
  * ### 简介
  * 按钮元素，适用于完成点击等特定的交互行为
