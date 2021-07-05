@@ -1,14 +1,9 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-
 import Menu, { MenuProps } from './Menu';
 import MenuItem, { MenuItemProps } from './MenuItem';
 import SubMenu, { SubMenuProps } from './SubMenu';
-
-library.add(fas)
 
 export default {
   title: "Menu组件",

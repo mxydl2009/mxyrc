@@ -16,16 +16,46 @@ interface IMenuContext {
 }
 
 export interface MenuProps {
+  /**
+   * 默认选中的菜单项索引
+   */
   defaultIndex?: string;
+  /**
+   * 自定义的class类名
+   */
   className?: string;
+  /**
+   * 菜单项的展示方向：horizontal表示横向，vertical表示纵向
+   */
   mode?: MenuMode;
+  /**
+   * 自定义的style属性，用于添加样式
+   */
   style?: React.CSSProperties;
+  /**
+   * 选中菜单项时的回调函数
+   */
   onSelected?: SelectedCallback;
+  /**
+   * 如果有二级菜单，默认打开的二级菜单项索引，如['3']表示索引为3的二级菜单应该默认打开
+   */
   defaultOpenedSubMenus?: string[];
 }
 
 export const MenuContext = createContext<IMenuContext>({ activeIndex: '0', mode: 'horizontal' })
 
+/**
+ * ## Menu组件说明
+ * 
+ * ### 引入形式
+ * ~~~js
+ * // ESModule
+ * import { Menu } from 'mxyrc'
+ * ~~~
+ * ### 简介
+ * Menu组件，用于展示一系列可供选择的菜单项，并且支持二级菜单项的定义
+ * @param props 
+ */
 const Menu: React.FC<MenuProps> = (props) => {
   const { className, mode, style, defaultIndex, children, onSelected, defaultOpenedSubMenus } = props;
   const [ currentActive, setActive ] = useState(defaultIndex)
