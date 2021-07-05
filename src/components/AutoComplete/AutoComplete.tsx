@@ -1,12 +1,13 @@
 import React, { FC, useState, ChangeEvent } from 'react'
 import classNames from 'classnames'
 import Input, { InputProps } from '../Input/Input'
+import Icon from '../Icon/Icon'
 
 export interface AutoCompleteProps extends Omit<InputProps, 'onSelect'> {
   /**
    * 筛选函数，根据输入的数据进行筛选，返回筛选后的数据
    */
-  fetchSuggestions: (data: string) => DataSourceType[];
+  fetchSuggestions: (data: string) => DataSourceType[] | Promise<DataSourceType[]>;
   /**
    * 选择某一项后的回调函数
    */
@@ -34,13 +35,22 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   } = props
   const [inputValue, setInputValue] = useState(value)
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([])
+  const [loading, setLoading] = useState(false)
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim()
     setInputValue(value)
     if (value) {
       const result = fetchSuggestions(value)
-      setSuggestions(result)
+      if (result instanceof Promise) {
+        setLoading(true)
+        result.then(data => {
+          setLoading(false)
+          setSuggestions(data)
+        })
+      } else {
+        setSuggestions(result)
+      }
     } else {
       setSuggestions([])
     }
@@ -70,6 +80,7 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
         onChange={handleChange}
         {...restProps}
       />
+      { loading && <ul><Icon icon={'spinner'} spin /></ul> }
       { suggestions.length > 0 && generateDropdown() }
     </div>
   )
