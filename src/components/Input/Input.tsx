@@ -7,6 +7,7 @@ type InputSize = 'lg' | 'sm'
 
 // 使用Omit来忽略InputHTMLAttributes<HTMLElement>中的size属性，让我们定义的size属性得以兼容
 // 否则，我们定义的size会与InputHTMLAttributes<HTMLElement>的size属性不兼容
+
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
   /**
    * 用于Input组件的禁用
@@ -35,14 +36,13 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
 }
 
 /**
- * ## Input组件说明
- * 
- * ### 引入形式
+ * ### Input组件说明
+ * #### 引入形式
  * ~~~js
  * // ESModule
  * import { Input } from 'mxyrc'
  * ~~~
- * ### 简介
+ * #### 简介
  * Input输入框组件，通过鼠标或键盘输入内容，是最基础的表单域的封装, 支持所有的HTMLInput基本属性
  * @param props 
  */
@@ -90,4 +90,4 @@ const Input: React.FC<InputProps> = (props) => {
   )
 }
 
-export default Input;
+export default Input

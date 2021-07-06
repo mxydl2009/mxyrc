@@ -14,12 +14,12 @@ export const DefaultAutoComplete: Story = () => {
     'james', 'anthoy', 'green', 'howard', 'kuzma', 'McGee', 'rando'
   ]
   const handleFetch = (query: string) => {
-    return lakers.filter(name => name.includes(query))
+    return lakers.filter(name => name.includes(query)).map(item => ({ value: item }))
   }
   return (
     <AutoComplete
       fetchSuggestions={handleFetch}
-      onSelect={(item) => { console.log(item) }}
+      onSelect={(item) => { action(item.value) }}
     />
   )
 }

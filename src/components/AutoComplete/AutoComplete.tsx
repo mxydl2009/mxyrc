@@ -28,6 +28,18 @@ interface DataSourceObj {
 // DataSourceType必须是包含value属性的对象，更多的属性由泛型T指定
 export type DataSourceType<T = {}> = T & DataSourceObj
 
+/**
+ * ## AutoComplete组件
+ * ### 组件说明
+ * #### 引入说明
+ * ~~~js
+ * // ESModule
+ * import { AutoComplete } from 'mxyrc'
+ * ~~~
+ * #### 简介
+ * 常用于根据用户输入内容进行自动提示补全的场景，避免用户输入太多
+ * @param props 
+ */
 const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const {
     fetchSuggestions,
