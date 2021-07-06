@@ -111,24 +111,30 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
   
   const generateDropdown = () => {
     return (
-      <ul className="mxyrc-suggestion-list">
-        { 
-          suggestions.map((item: DataSourceType, index: number) => {
-            const cNames = classNames('suggestion-item', {
-              'item-highlighted': index === highlightIndex
+      <Transition
+        in={suggestions.length > 0}
+        timeout={300}
+        animation='zoom-in-left'
+      >
+        <ul className="mxyrc-suggestion-list">
+          { 
+            suggestions.map((item: DataSourceType, index: number) => {
+              const cNames = classNames('suggestion-item', {
+                'item-highlighted': index === highlightIndex
+              })
+              return (
+                <li 
+                  key={index}
+                  className={cNames}
+                  onClick={() => { handleSelect(item)}}
+                >
+                  { renderOption? renderOption(item): item.value }
+                </li>
+              ) 
             })
-            return (
-              <li 
-                key={index}
-                className={cNames}
-                onClick={() => { handleSelect(item)}}
-              >
-                { renderOption? renderOption(item): item.value }
-              </li>
-            ) 
-          })
-        }
-      </ul>
+          }
+        </ul>
+      </Transition>
     )
   }
   return (
@@ -140,7 +146,8 @@ const AutoComplete: FC<AutoCompleteProps> = (props) => {
         {...restProps}
       />
       { loading && <ul><Icon icon={'spinner'} spin /></ul> }
-      { suggestions.length > 0 && generateDropdown() }
+      {/* { suggestions.length > 0 && generateDropdown() } */}
+      { generateDropdown() }
     </div>
   )
 }
