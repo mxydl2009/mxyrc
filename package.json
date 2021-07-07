@@ -1,6 +1,6 @@
 {
   "name": "mxyrc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React Components Library",
   "private": false,
   "main": "./dist/index.js",
@@ -36,13 +36,20 @@
     "start": "react-scripts start",
     "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true npm run test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "clean": "rimraf ./dist",
-    "prepublish": "npm run build"
+    "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
+    "prepublish": "npm run test:nowatch && npm run lint && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:nowatch && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -74,26 +81,28 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-docs": "^6.3.0",
     "@storybook/addon-essentials": "^6.3.0",
     "@storybook/addon-links": "^6.3.0",
     "@storybook/node-logger": "^6.3.0",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.3.0",
-    "rimraf": "^3.0.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "@types/classnames": "^2.3.1",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "@types/react-transition-group": "^4.4.1",
+    "cross-env": "^7.0.3",
+    "husky": "^7.0.1",
     "node-sass": "^4.13.0",
-    "@storybook/addon-docs": "^6.3.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-scripts": "4.0.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.2"
   }
 }
