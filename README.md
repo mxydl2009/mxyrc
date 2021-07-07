@@ -5,6 +5,10 @@
 
 ## 使用
 ### 导入组件
-`import { Button } from 'mxyrc'`
+```js
+import { Button } from 'mxyrc'
+```
 ### 导入样式
-`import 'mxyrc/index.css'`
+```js
+import 'mxyrc/index.css'
+`
