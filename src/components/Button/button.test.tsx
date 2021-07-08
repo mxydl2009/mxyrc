@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import Button, { ButtonProps, ButtonSize, ButtonType } from './Button'
+import Button, { ButtonProps } from './Button'
 
 const defaultProps = {
   // 添加事件处理函数的mock函数，测试时只需要判断该函数是否被调用，使用jest.fn()创建一个mock函数

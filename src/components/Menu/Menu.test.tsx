@@ -1,8 +1,12 @@
 import React from 'react'
 import { fireEvent, render, RenderResult, cleanup, waitFor } from '@testing-library/react'
 import Menu, { MenuProps } from './Menu'
-import MenuItem, { MenuItemProps } from './MenuItem'
-import SubMenu, { SubMenuProps } from './SubMenu'
+import MenuItem from './MenuItem'
+import SubMenu from './SubMenu'
+// 添加图标名称前缀的辅助代码，避免测试时报错
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 const testProps: MenuProps = {
   defaultIndex: '0',
@@ -91,7 +95,7 @@ describe('test Menu and MenuItem components', () => {
 
   it('should show dropdown items when hover on submenu', async () => {
     expect(menuElement).toHaveClass('menu-horizontal')
-    expect(wrapper.queryByText('submenu-active')).not.toBeVisible()
+    expect(wrapper.queryByText('submenu-active')).toBeNull()
     const dropDownElement = wrapper.getByText('dropdown')
     fireEvent.mouseEnter(dropDownElement)
     await waitFor(() => {
