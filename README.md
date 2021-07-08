@@ -1,5 +1,7 @@
 # 基于TypeScript，仿照AntD的React组件库
 
+欢迎使用
+
 ## 安装
 `npm install mxyrc`
 
