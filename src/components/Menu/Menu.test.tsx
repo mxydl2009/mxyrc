@@ -51,8 +51,8 @@ const createStyleFile = () => {
 }
 
 let wrapper: RenderResult, menuElement: HTMLElement, 
-    activeElement: HTMLElement, disabledElement: HTMLElement,
-    subMenuElement: HTMLElement
+    activeElement: HTMLElement, disabledElement: HTMLElement;
+    // subMenuElement: HTMLElement
 
 describe('test Menu and MenuItem components', () => {
 
