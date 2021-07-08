@@ -49,7 +49,7 @@ type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElemen
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 /**
- * ## Button组件的说明
+ * 
  * 
  * ### 引入说明
  * ~~~js

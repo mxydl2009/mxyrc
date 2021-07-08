@@ -12,7 +12,7 @@ export interface IconProps extends FontAwesomeIconProps {
 }
 
 /**
- * ## Icon组件说明
+ * 
  * 
  * ### 引入方式
  * ~~~js

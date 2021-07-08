@@ -5,7 +5,7 @@ import AutoComplete from './AutoComplete'
 
 export default {
   title: 'AutoComplete组件',
-  compoennt: AutoComplete
+  component: AutoComplete
 } as Meta
 
 

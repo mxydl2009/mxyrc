@@ -36,7 +36,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
 }
 
 /**
- * ### Input组件说明
+ * 
  * #### 引入形式
  * ~~~js
  * // ESModule

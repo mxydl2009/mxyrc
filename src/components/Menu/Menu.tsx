@@ -45,7 +45,7 @@ export interface MenuProps {
 export const MenuContext = createContext<IMenuContext>({ activeIndex: '0', mode: 'horizontal' })
 
 /**
- * ## Menu组件说明
+ * 
  * 
  * ### 引入形式
  * ~~~js

@@ -6,7 +6,7 @@ import Icon from '../Icon/Icon'
 
 export default {
   title: 'Input组件',
-  compoennt: Input
+  component: Input
 } as Meta
 
 export const DefaultInput: Story = () => {
