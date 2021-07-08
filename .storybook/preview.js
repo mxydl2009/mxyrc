@@ -6,6 +6,12 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      method: '',
+      order: ['IndexPage', 'components' ], 
+    },
+  },
 }
 
 // 添加样式文件
