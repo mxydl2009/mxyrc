@@ -62,7 +62,7 @@ describe('test Menu and MenuItem components', () => {
     menuElement = wrapper.getByTestId('test-menu')
     activeElement = wrapper.getByText('active')
     disabledElement = wrapper.getByText('disabled')
-    subMenuElement = menuElement.querySelector(':scope > ul') as HTMLElement
+    // subMenuElement = menuElement.querySelector(':scope > ul') as HTMLElement
   })
 
   it('should render correct Menu and MenuItem based on default props', () => {

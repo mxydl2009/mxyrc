@@ -1,9 +1,8 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { action } from '@storybook/addon-actions'
-import Menu, { MenuProps } from './Menu';
-import MenuItem, { MenuItemProps } from './MenuItem';
-import SubMenu, { SubMenuProps } from './SubMenu';
+import Menu from './Menu';
+import MenuItem from './MenuItem';
+import SubMenu from './SubMenu';
 
 export default {
   title: "Menu组件",
