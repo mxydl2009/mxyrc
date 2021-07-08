@@ -44,7 +44,7 @@
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "clean": "rimraf ./dist",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
-    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
+    "prepublish": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
     "hooks": {
